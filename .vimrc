@@ -18,15 +18,6 @@ if executable('gopls')
         \ })
 endif
 
-" Helper to organize imports via gopls
-function! s:go_organize_imports() abort
-  let actions = lsp#utils#code_action_sync([], ['source.organizeImports'], 1000)
-  for action in actions
-    call lsp#utils#execute_command(action)
-  endfor
-endfunction
-
-" Called whenever LSP attaches to a buffer
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -38,14 +29,19 @@ function! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
-  let g:lsp_format_sync_timeout = 1000
+  nmap <buffer> <Leader><Leader> <plug>(lsp-code-action)
+  nmap <buffer> <Leader>ro :LspCodeAction source.organizeImports<CR>
 
-  " organize imports, then format, on each Go write
-  autocmd! BufWritePre <buffer> *.go call s:go_organize_imports()
-  autocmd  BufWritePre <buffer> *.go call LspDocumentFormatSync()
+  let g:lsp_format_sync_timeout = 1000
 endfunction
 
 augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+augroup go_lsp_on_save
+  autocmd!
+  autocmd BufWritePre *.go :LspCodeAction source.organizeImports
+  autocmd BufWritePre *.go :LspDocumentFormatSync
 augroup END
