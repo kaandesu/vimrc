@@ -79,15 +79,37 @@ highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
 set updatetime=250
 nmap <Leader>gn :GitGutterNextHunk<CR>  
 nmap <Leader>gp :GitGutterPrevHunk<CR> 
-nmap <Leader>ghp :GitGutterPreviewHunk<CR> 
 nmap <Leader>gha :GitGutterStageHunk<CR>
 nmap <Leader>ghr :GitGutterUndoHunk<CR>
 
 let g:gitgutter_highlight_lines = 0
+let g:gitgutter_hunk_previewed = 0
+let g:gitgutter_preview_line = -1
+
+" only preview when im on the line that i opened it
+" close it if i move
+function! PreviewHunk()
+  if g:gitgutter_hunk_previewed == 1
+    let g:gitgutter_hunk_previewed = 0
+    let g:gitgutter_preview_line = -1
+  else
+    GitGutterPreviewHunk
+    let g:gitgutter_hunk_previewed = 1
+    let g:gitgutter_preview_line = line('.')
+  endif
+endfunction
+
+nnoremap <Leader>ghp :call PreviewHunk()<CR>
+
+augroup GitGutterAutoClosePreview
+  autocmd!
+  autocmd CursorMoved * if g:gitgutter_hunk_previewed == 1 && line('.') != g:gitgutter_preview_line | pclose | let g:gitgutter_hunk_previewed = 0 | let g:gitgutter_preview_line = -1 | endif
+augroup END
 "--------</VIM-GUTGUTTER>--------------
 
 "--------TODO:-------- ADD CONFIG FOR VIM-SURROUND--------------
-
+" probably <C-g> or i need to think about with glove80 in mind
+" <C-g> was a good idea for a while but i don't know
 
 "-------<VIM-TARGET>--------------
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr rb rB bb bB BB'
@@ -128,7 +150,7 @@ set smartcase
 set smarttab
 set softtabstop=4
 set tabstop=4
-"set termguicolors
+sset termguicolors
 set textwidth=100
 set ttimeout
 set ttimeoutlen=100
