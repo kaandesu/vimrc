@@ -59,19 +59,41 @@ nnoremap <C-A> ggVG
 " disable auto comment in new line
 set formatoptions-=r
 
-"resizing the panes
-" nnoremap <C-w><Left>  <C-w>7<
-" nnoremap <C-w><Right> <C-w>7>
-" nnoremap <C-w><Up>    <C-w>7+
-" nnoremap <C-w><Down>  <C-w>7-
-
-" Saving
+" <Saving>
 cabbrev W w
 cabbrev Wq wq
 cabbrev WQ wq
-"--
+" </Saving>
 
-"----------------FROM REDDIT----------------------------
+"--------<VIM-GUTGUTTER>--------------
+" Optional: Customize signs (you can skip if defaults are fine)
+let g:gitgutter_sign_added = '█'
+let g:gitgutter_sign_modified = '█|'
+let g:gitgutter_sign_removed = '█'
+let g:gitgutter_sign_modified_removed = '█'
+
+highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
+highlight GitGutterChange guifg=#ffff00 ctermfg=Blue
+highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+
+set updatetime=250
+nmap <Leader>gn :GitGutterNextHunk<CR>  
+nmap <Leader>gp :GitGutterPrevHunk<CR> 
+nmap <Leader>ghp :GitGutterPreviewHunk<CR> 
+nmap <Leader>gha :GitGutterStageHunk<CR>
+nmap <Leader>ghr :GitGutterUndoHunk<CR>
+
+let g:gitgutter_highlight_lines = 0
+"--------</VIM-GUTGUTTER>--------------
+
+"--------TODO:-------- ADD CONFIG FOR VIM-SURROUND--------------
+
+
+"-------<VIM-TARGET>--------------
+let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr rr rb rB bb bB BB'
+"--------</VIM-TARGET>--------------
+
+"----------------some vim settings----------------------------
 set autoindent
 set autoread
 set background=dark
