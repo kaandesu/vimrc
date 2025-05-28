@@ -7,8 +7,11 @@ set nocompatible
 set relativenumber
 set ts=4 sw=4
 
+set mouse=a
 syntax enable
+	
 filetype plugin on
+set clipboard^=unnamed,unnamedplus
 
 if executable('gopls')
   au User lsp_setup call lsp#register_server({
