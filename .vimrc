@@ -43,6 +43,11 @@ nnoremap { }zz
 nnoremap } {zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+
+nnoremap + <C-a>
+nnoremap - <C-x>
+nnoremap <C-A> ggVG
+
 "-------------------------------------------------------
 	
 filetype plugin on
