@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/kaanyilmaz/Desktop/Programming/sandbox/silllllllllllllllllll/test/test.go'
+let g:netrw_dirhist_7='/Users/kaanyilmaz/.vim'
+let g:netrw_dirhist_6='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/server'
+let g:netrw_dirhist_5='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat'
+let g:netrw_dirhist_4='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/server'
+let g:netrw_dirhist_3='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/public'
+let g:netrw_dirhist_2='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat'
+let g:netrw_dirhist_1='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/client'
+let g:netrw_dirhist_0='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/client/messages'
+let g:netrw_dirhist_9='/Users/kaanyilmaz/Desktop/Programming/gits/bubble-chat/client'
