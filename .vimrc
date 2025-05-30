@@ -150,7 +150,7 @@ set smartcase
 set smarttab
 set softtabstop=4
 set tabstop=4
-sset termguicolors
+" set termguicolors
 set textwidth=100
 set ttimeout
 set ttimeoutlen=100
@@ -198,6 +198,10 @@ augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" autocomplete https://github.com/prabirshrestha/asyncomplete.vim
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
 
 
 augroup go_lsp_on_save
